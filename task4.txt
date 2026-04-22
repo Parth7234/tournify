@@ -1,0 +1,3 @@
+remove the admin button from the viewer button 
+the upcoming,completed,sports count on the admin and viewer dashboard donot upadte when something is deleted, for eg on deleting all the data nothing the count doesnot get updated to 0.
+remove emojis

@@ -1,0 +1,12 @@
+for a tournament in round robin format you should display its points table at each point of time 
+for a tournament in knockout you should display the bracket tree at each point of time 
+
+after a match is complted uou should display its winner name instead of just displaying completed
+
+add option only to add the follwoing sports: basketball,volleyball,chess,table tennis,badminton,football
+
+when match is live:=
+for basketball,volleyball,table tennis and badminton live score should be displayed 
+for football you should display live score as well as the players who scored the globals
+for chess there should be an option to add 0.5 points to both as ties can also occur 
+
