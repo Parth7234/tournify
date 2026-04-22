@@ -20,7 +20,7 @@ const EventSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['draft', 'active', 'completed'],
+    enum: ['draft', 'active', 'completed', 'ended'],
     default: 'draft',
   },
 }, {

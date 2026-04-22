@@ -32,7 +32,7 @@ export default function EventsPage() {
 
   async function handleDelete(id) { if (!confirm('Delete this event?')) return; await deleteEvent(id); loadEvents(); }
 
-  const statusColor = (s) => s === 'active' ? 'bg-primary-fixed/30 text-primary border border-primary/15' : s === 'completed' ? 'bg-surface-container text-on-surface-variant border border-outline-variant/20' : 'bg-secondary-container/30 text-secondary border border-secondary/15';
+  const statusColor = (s) => s === 'active' ? 'bg-primary-fixed/30 text-primary border border-primary/15' : s === 'ended' ? 'bg-inverse-surface text-inverse-on-surface border border-inverse-surface/20' : s === 'completed' ? 'bg-surface-container text-on-surface-variant border border-outline-variant/20' : 'bg-secondary-container/30 text-secondary border border-secondary/15';
 
   if (loading) return (
     <div className="flex items-center justify-center py-20 gap-3">
@@ -94,7 +94,7 @@ export default function EventsPage() {
               </div>
               <div><label className={labelCls}>Status</label>
                 <select className={inputCls} value={form.status} onChange={e => setForm({...form, status: e.target.value})}>
-                  <option value="draft">Draft</option><option value="active">Active</option><option value="completed">Completed</option>
+                  <option value="draft">Draft</option><option value="active">Active</option><option value="completed">Completed</option><option value="ended">Ended</option>
                 </select>
               </div>
               <div className="flex justify-end gap-2 mt-2 pt-4 border-t border-outline-variant/15">

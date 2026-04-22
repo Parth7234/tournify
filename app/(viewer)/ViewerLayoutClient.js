@@ -51,11 +51,10 @@ export default function ViewerLayoutClient({ children }) {
             <nav className="hidden md:flex gap-1 text-xs font-semibold">
               <Link
                 href="/"
-                className={`px-3 py-1.5 rounded-lg transition-all duration-200 ${
-                  pathname === '/'
+                className={`px-3 py-1.5 rounded-lg transition-all duration-200 ${pathname === '/'
                     ? 'text-primary bg-primary-fixed/30 shadow-sm shadow-primary/5'
                     : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-low'
-                }`}
+                  }`}
               >
                 Home
               </Link>
@@ -63,15 +62,23 @@ export default function ViewerLayoutClient({ children }) {
                 <Link
                   key={sport._id}
                   href={`/sport/${sport._id}`}
-                  className={`px-3 py-1.5 rounded-lg transition-all duration-200 ${
-                    pathname === `/sport/${sport._id}`
+                  className={`px-3 py-1.5 rounded-lg transition-all duration-200 ${pathname === `/sport/${sport._id}`
                       ? 'text-primary bg-primary-fixed/30 shadow-sm shadow-primary/5'
                       : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-low'
-                  }`}
+                    }`}
                 >
                   {sport.name}
                 </Link>
               ))}
+              <Link
+                href="/leaderboard"
+                className={`px-3 py-1.5 rounded-lg transition-all duration-200 ${pathname === '/leaderboard'
+                    ? 'text-primary bg-primary-fixed/30 shadow-sm shadow-primary/5'
+                    : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-low'
+                  }`}
+              >
+                Leaderboard
+              </Link>
             </nav>
           </div>
 
@@ -109,9 +116,8 @@ export default function ViewerLayoutClient({ children }) {
             <nav className="flex flex-col px-5 py-3 gap-1">
               <Link
                 href="/"
-                className={`px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
-                  pathname === '/' ? 'text-primary bg-primary-fixed/30' : 'text-on-surface-variant hover:bg-surface-container-low'
-                }`}
+                className={`px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors ${pathname === '/' ? 'text-primary bg-primary-fixed/30' : 'text-on-surface-variant hover:bg-surface-container-low'
+                  }`}
               >
                 Home
               </Link>
@@ -119,13 +125,19 @@ export default function ViewerLayoutClient({ children }) {
                 <Link
                   key={sport._id}
                   href={`/sport/${sport._id}`}
-                  className={`px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
-                    pathname === `/sport/${sport._id}` ? 'text-primary bg-primary-fixed/30' : 'text-on-surface-variant hover:bg-surface-container-low'
-                  }`}
+                  className={`px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors ${pathname === `/sport/${sport._id}` ? 'text-primary bg-primary-fixed/30' : 'text-on-surface-variant hover:bg-surface-container-low'
+                    }`}
                 >
                   {sport.name}
                 </Link>
               ))}
+              <Link
+                href="/leaderboard"
+                className={`px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors ${pathname === '/leaderboard' ? 'text-primary bg-primary-fixed/30' : 'text-on-surface-variant hover:bg-surface-container-low'
+                  }`}
+              >
+                Leaderboard
+              </Link>
             </nav>
           </div>
         )}

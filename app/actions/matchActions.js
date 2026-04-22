@@ -4,6 +4,9 @@ import dbConnect from '@/lib/mongodb';
 import Match from '@/models/Match';
 import Squad from '@/models/Squad';
 import Sport from '@/models/Sport';
+import Event from '@/models/Event';
+import Team from '@/models/Team';
+import Medal from '@/models/Medal';
 
 export async function getMatches(sportId, status) {
   await dbConnect();
@@ -50,6 +53,11 @@ export async function updateMatchScore(id, data) {
       await advanceKnockout(match);
     } catch (e) {
       console.error('Knockout advance error:', e);
+    }
+    try {
+      await checkSportCompletion(match);
+    } catch (e) {
+      console.error('Sport completion check error:', e);
     }
   }
 
@@ -293,4 +301,156 @@ function generateHybrid(sport, squads, sportId) {
   }
 
   return matches;
+}
+
+// ============ EVENT FINALIZATION & MEDALS ============
+
+async function checkSportCompletion(completedMatch) {
+  const sportId = completedMatch.sportId._id || completedMatch.sportId;
+
+  // Get all matches for this sport
+  const allMatches = await Match.find({ sportId }).lean();
+  const allDone = allMatches.length > 0 && allMatches.every(m => m.status === 'completed');
+  if (!allDone) return;
+
+  // All matches in this sport are done — allocate medals
+  const sport = await Sport.findById(sportId).lean();
+  if (!sport) return;
+
+  await allocateMedals(sport, allMatches);
+
+  // Now check if ALL sports in the event are finalized
+  const allSports = await Sport.find({ eventId: sport.eventId }).lean();
+  let eventComplete = true;
+
+  for (const sp of allSports) {
+    if (!sp.tournamentGenerated) { eventComplete = false; break; }
+    const sportMatches = await Match.find({ sportId: sp._id }).lean();
+    if (sportMatches.length === 0 || !sportMatches.every(m => m.status === 'completed')) {
+      eventComplete = false;
+      break;
+    }
+  }
+
+  if (eventComplete) {
+    await Event.findByIdAndUpdate(sport.eventId, { status: 'ended' });
+  }
+}
+
+async function allocateMedals(sport, allMatches) {
+  const sportId = sport._id;
+  const eventId = sport.eventId;
+
+  // Skip if medals already allocated for this sport
+  const existing = await Medal.findOne({ sportId });
+  if (existing) return;
+
+  const format = sport.tournamentFormat;
+
+  if (format === 'knockout') {
+    // Find the Final match
+    const finalMatch = allMatches.find(m => m.round === 'Final');
+    if (!finalMatch) return;
+
+    // Get squads to find teamIds
+    const squadA = await Squad.findById(finalMatch.squadA).lean();
+    const squadB = await Squad.findById(finalMatch.squadB).lean();
+    if (!squadA || !squadB) return;
+
+    let goldTeam, silverTeam;
+    if (finalMatch.scoreA > finalMatch.scoreB) {
+      goldTeam = squadA.teamId;
+      silverTeam = squadB.teamId;
+    } else if (finalMatch.scoreB > finalMatch.scoreA) {
+      goldTeam = squadB.teamId;
+      silverTeam = squadA.teamId;
+    } else {
+      // Draw in final — default to squadA as winner
+      goldTeam = squadA.teamId;
+      silverTeam = squadB.teamId;
+    }
+
+    const medals = [
+      { eventId, sportId, teamId: goldTeam, medal: 'gold' },
+      { eventId, sportId, teamId: silverTeam, medal: 'silver' },
+    ];
+
+    // Try to find a bronze (3rd place) — semi-final losers
+    const semiFinals = allMatches.filter(m => m.round === 'Semi Final');
+    if (semiFinals.length === 2) {
+      // The two losers of semis who are NOT in the final
+      const finalists = [finalMatch.squadA.toString(), finalMatch.squadB.toString()];
+      for (const sf of semiFinals) {
+        let loserSquadId;
+        if (sf.scoreA > sf.scoreB) loserSquadId = sf.squadB;
+        else if (sf.scoreB > sf.scoreA) loserSquadId = sf.squadA;
+        else loserSquadId = sf.squadB;
+
+        if (!finalists.includes(loserSquadId.toString())) {
+          const loserSquad = await Squad.findById(loserSquadId).lean();
+          if (loserSquad) {
+            medals.push({ eventId, sportId, teamId: loserSquad.teamId, medal: 'bronze' });
+            break; // Only one bronze
+          }
+        }
+      }
+    }
+
+    try {
+      await Medal.insertMany(medals, { ordered: false });
+    } catch (e) {
+      // Ignore duplicate key errors
+      if (e.code !== 11000) console.error('Medal insert error:', e);
+    }
+
+  } else {
+    // Points-based: round_robin, double_round_robin, hybrid
+    // Compute standings
+    const standings = {};
+    for (const match of allMatches) {
+      if (match.status !== 'completed') continue;
+      const squadA = await Squad.findById(match.squadA).lean();
+      const squadB = await Squad.findById(match.squadB).lean();
+      if (!squadA || !squadB) continue;
+
+      const idA = squadA.teamId.toString();
+      const idB = squadB.teamId.toString();
+
+      if (!standings[idA]) standings[idA] = { teamId: squadA.teamId, points: 0, gf: 0, ga: 0 };
+      if (!standings[idB]) standings[idB] = { teamId: squadB.teamId, points: 0, gf: 0, ga: 0 };
+
+      standings[idA].gf += match.scoreA;
+      standings[idA].ga += match.scoreB;
+      standings[idB].gf += match.scoreB;
+      standings[idB].ga += match.scoreA;
+
+      if (match.scoreA > match.scoreB) {
+        standings[idA].points += 3;
+      } else if (match.scoreB > match.scoreA) {
+        standings[idB].points += 3;
+      } else {
+        standings[idA].points += 1;
+        standings[idB].points += 1;
+      }
+    }
+
+    const sorted = Object.values(standings).sort((a, b) => {
+      if (b.points !== a.points) return b.points - a.points;
+      const gdA = a.gf - a.ga;
+      const gdB = b.gf - b.ga;
+      if (gdB !== gdA) return gdB - gdA;
+      return b.gf - a.gf;
+    });
+
+    const medals = [];
+    if (sorted[0]) medals.push({ eventId, sportId, teamId: sorted[0].teamId, medal: 'gold' });
+    if (sorted[1]) medals.push({ eventId, sportId, teamId: sorted[1].teamId, medal: 'silver' });
+    if (sorted[2]) medals.push({ eventId, sportId, teamId: sorted[2].teamId, medal: 'bronze' });
+
+    try {
+      await Medal.insertMany(medals, { ordered: false });
+    } catch (e) {
+      if (e.code !== 11000) console.error('Medal insert error:', e);
+    }
+  }
 }

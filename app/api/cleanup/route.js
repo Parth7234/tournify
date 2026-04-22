@@ -6,6 +6,7 @@ import Sport from '@/models/Sport';
 import Squad from '@/models/Squad';
 import Match from '@/models/Match';
 import Player from '@/models/Player';
+import Medal from '@/models/Medal';
 
 export async function POST() {
   try {
@@ -19,10 +20,11 @@ export async function POST() {
       Squad.deleteMany({}),
       Match.deleteMany({}),
       Player.deleteMany({}),
+      Medal.deleteMany({}),
     ]);
 
     return NextResponse.json({
-      message: 'Database cleaned. All events, teams, sports, squads, matches, and players deleted. Admin user preserved.',
+      message: 'Database cleaned. All events, teams, sports, squads, matches, players, and medals deleted. Admin user preserved.',
     });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
