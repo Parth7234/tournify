@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tournify - Viewer Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fecaa3",
+                        "on-tertiary-fixed": "#300c32",
+                        "surface-dim": "#dcdad2",
+                        "primary": "#56642b",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f5f4eb",
+                        "surface-container-highest": "#e4e3db",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#efbc96",
+                        "on-primary-fixed": "#161f00",
+                        "on-surface": "#1b1c17",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#46483c",
+                        "surface-tint": "#56642b",
+                        "primary-fixed": "#d9eaa3",
+                        "inverse-on-surface": "#f3f1e9",
+                        "on-primary-container": "#253000",
+                        "on-secondary-container": "#795334",
+                        "outline": "#76786b",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#eab6e6",
+                        "surface-variant": "#e4e3db",
+                        "inverse-surface": "#30312c",
+                        "on-primary-fixed-variant": "#3e4c16",
+                        "tertiary-fixed": "#ffd6fa",
+                        "secondary": "#7c5637",
+                        "surface-container": "#f0eee6",
+                        "secondary-fixed": "#ffdcc3",
+                        "background": "#fbf9f1",
+                        "inverse-primary": "#bdce89",
+                        "on-secondary-fixed": "#2f1500",
+                        "outline-variant": "#c6c8b8",
+                        "surface-bright": "#fbf9f1",
+                        "surface-container-high": "#eae8e0",
+                        "on-secondary-fixed-variant": "#623f22",
+                        "on-tertiary-container": "#431e44",
+                        "tertiary": "#7a507a",
+                        "tertiary-container": "#b384b1",
+                        "primary-fixed-dim": "#bdce89",
+                        "on-tertiary-fixed-variant": "#603961",
+                        "primary-container": "#8a9a5b",
+                        "surface": "#fbf9f1",
+                        "on-error": "#ffffff",
+                        "on-background": "#1b1c17"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "xs": "4px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "xl": "80px",
+                        "container-max": "1200px",
+                        "md": "24px"
+                    },
+                    fontFamily: {
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "stat-number": ["Plus Jakarta Sans"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "h2": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "label-caps": ["12px", { lineHeight: "1.0", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "h3": ["24px", { lineHeight: "1.4", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "stat-number": ["28px", { lineHeight: "1.0", fontWeight: "700" }],
+                        "h1": ["40px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "h2": ["32px", { lineHeight: "1.3", letterSpacing: "-0.01em", fontWeight: "600" }]
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen pb-xl md:pb-0">
+<!-- TopNavBar Shared Component -->
+<nav class="hidden md:flex bg-[#FAFAFA] dark:bg-stone-900 docked full-width top-0 border-b border-b border-[#8A9A5B]/10 dark:border-white/10 shadow-sm shadow-[#8A9A5B]/5 z-50 sticky">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-[1200px] mx-auto">
+<div class="text-2xl font-bold text-[#8A9A5B] dark:text-[#A4B475] tracking-tight">
+                Tournify
+            </div>
+<div class="flex items-center gap-lg font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<a class="text-[#8A9A5B] border-b-2 border-[#8A9A5B] pb-1 duration-200 ease-in-out" href="#">Home</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#8A9A5B] hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors duration-200 ease-in-out px-2 py-1 rounded" href="#">Sports</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#8A9A5B] hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors duration-200 ease-in-out px-2 py-1 rounded" href="#">Tournaments</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#8A9A5B] hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors duration-200 ease-in-out px-2 py-1 rounded" href="#">Live</a>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-stone-400" style="font-size: 18px;">search</span>
+<input class="bg-stone-100 dark:bg-stone-800 border-none rounded-full pl-8 pr-4 py-1.5 text-sm focus:ring-1 focus:ring-[#8A9A5B] w-48" placeholder="Search..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-caps text-label-caps hover:opacity-90 transition-opacity">
+                    Sign In
+                </button>
+</div>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-6 py-xl flex flex-col gap-xl">
+<!-- Hero Section -->
+<section class="flex flex-col items-center text-center gap-md max-w-2xl mx-auto py-lg">
+<h1 class="font-h1 text-h1 text-on-surface">College Sports, Live &amp; Loud</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                Experience the spirit of the game. Track ongoing tournaments, catch live updates, and celebrate every victory in a serene, focused environment.
+            </p>
+</section>
+<!-- Stats Overview -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 flex flex-col gap-sm relative overflow-hidden group">
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-primary opacity-5 text-[80px] group-hover:scale-110 transition-transform">live_tv</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Live Now</span>
+<span class="font-stat-number text-stat-number text-primary">0</span>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 flex flex-col gap-sm relative overflow-hidden group">
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-primary opacity-5 text-[80px] group-hover:scale-110 transition-transform">event_upcoming</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Upcoming</span>
+<span class="font-stat-number text-stat-number text-primary">8</span>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 flex flex-col gap-sm relative overflow-hidden group">
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-primary opacity-5 text-[80px] group-hover:scale-110 transition-transform">task_alt</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Completed</span>
+<span class="font-stat-number text-stat-number text-primary">13</span>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 flex flex-col gap-sm relative overflow-hidden group">
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-primary opacity-5 text-[80px] group-hover:scale-110 transition-transform">sports_basketball</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Sports</span>
+<span class="font-stat-number text-stat-number text-primary">4</span>
+</div>
+</section>
+<!-- Live Now Section -->
+<section class="flex flex-col gap-gutter">
+<div class="flex items-center gap-sm">
+<h2 class="font-h2 text-h2 text-on-surface">Live Now</h2>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 animate-pulse">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary-container"></span>
+                    LIVE
+                </span>
+</div>
+<div class="bg-surface-container border border-outline-variant/20 rounded-xl p-lg flex flex-col items-center justify-center text-center gap-sm h-48">
+<span class="material-symbols-outlined text-outline text-[40px]">notifications_paused</span>
+<p class="font-body-md text-body-md text-on-surface-variant">No matches are currently live.</p>
+<p class="font-body-md text-body-md text-outline">Check the upcoming schedule below.</p>
+</div>
+</section>
+<!-- Coming Up Section -->
+<section class="flex flex-col gap-gutter">
+<h2 class="font-h2 text-h2 text-on-surface">Coming Up</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Match Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 flex flex-col gap-md shadow-sm">
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-sm">
+<span class="bg-surface-container-low text-on-surface px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">sports_volleyball</span>
+                            Volleyball
+                        </span>
+<span class="font-label-caps text-label-caps text-outline">Tomorrow, 2:00 PM</span>
+</div>
+<div class="flex justify-between items-center pt-xs">
+<div class="flex flex-col gap-xs w-2/5">
+<span class="font-h3 text-h3 text-on-surface truncate">Eagles</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Home</span>
+</div>
+<span class="font-label-caps text-label-caps text-outline bg-surface-container px-2 py-1 rounded">VS</span>
+<div class="flex flex-col gap-xs w-2/5 text-right">
+<span class="font-h3 text-h3 text-on-surface truncate">Tigers</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Away</span>
+</div>
+</div>
+</div>
+<!-- Match Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 flex flex-col gap-md shadow-sm">
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-sm">
+<span class="bg-surface-container-low text-on-surface px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+                            Chess
+                        </span>
+<span class="font-label-caps text-label-caps text-outline">Tomorrow, 4:30 PM</span>
+</div>
+<div class="flex justify-between items-center pt-xs">
+<div class="flex flex-col gap-xs w-2/5">
+<span class="font-h3 text-h3 text-on-surface truncate">Knights</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Home</span>
+</div>
+<span class="font-label-caps text-label-caps text-outline bg-surface-container px-2 py-1 rounded">VS</span>
+<div class="flex flex-col gap-xs w-2/5 text-right">
+<span class="font-h3 text-h3 text-on-surface truncate">Bishops</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Away</span>
+</div>
+</div>
+</div>
+<!-- Match Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 flex flex-col gap-md shadow-sm">
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-sm">
+<span class="bg-surface-container-low text-on-surface px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">sports_tennis</span>
+                            Tennis
+                        </span>
+<span class="font-label-caps text-label-caps text-outline">Oct 15, 10:00 AM</span>
+</div>
+<div class="flex justify-between items-center pt-xs">
+<div class="flex flex-col gap-xs w-2/5">
+<span class="font-h3 text-h3 text-on-surface truncate">Aces</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Home</span>
+</div>
+<span class="font-label-caps text-label-caps text-outline bg-surface-container px-2 py-1 rounded">VS</span>
+<div class="flex flex-col gap-xs w-2/5 text-right">
+<span class="font-h3 text-h3 text-on-surface truncate">Smashers</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Away</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Shared Component (Mobile Only) -->
+<nav class="md:hidden bg-white/80 dark:bg-stone-900/80 backdrop-blur-md fixed bottom-0 w-full rounded-t-2xl border-t border-t border-[#8A9A5B]/10 shadow-[0_-4px_20px_rgba(138,154,91,0.08)] z-50">
+<div class="flex justify-around items-center px-4 pb-6 pt-2 text-[10px] font-medium font-['Plus_Jakarta_Sans']">
+<div class="flex flex-col items-center justify-center bg-[#FFCBA4]/20 text-[#8A9A5B] rounded-xl px-4 py-1 active:scale-95 tap-highlight-transparent cursor-pointer">
+<span class="material-symbols-outlined text-lg mb-1">home</span>
+                Home
+            </div>
+<div class="flex flex-col items-center justify-center text-stone-400 active:scale-95 tap-highlight-transparent cursor-pointer px-4 py-1">
+<span class="material-symbols-outlined text-lg mb-1">search</span>
+                Explore
+            </div>
+<div class="flex flex-col items-center justify-center text-stone-400 active:scale-95 tap-highlight-transparent cursor-pointer px-4 py-1">
+<span class="material-symbols-outlined text-lg mb-1">live_tv</span>
+                Live
+            </div>
+<div class="flex flex-col items-center justify-center text-stone-400 active:scale-95 tap-highlight-transparent cursor-pointer px-4 py-1">
+<span class="material-symbols-outlined text-lg mb-1">person</span>
+                Profile
+            </div>
+</div>
+</nav>
+</body></html>

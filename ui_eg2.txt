@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tournify - Chess Layout</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fecaa3",
+                        "on-tertiary-fixed": "#300c32",
+                        "surface-dim": "#dcdad2",
+                        "primary": "#56642b",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f5f4eb",
+                        "surface-container-highest": "#e4e3db",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#efbc96",
+                        "on-primary-fixed": "#161f00",
+                        "on-surface": "#1b1c17",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#46483c",
+                        "surface-tint": "#56642b",
+                        "primary-fixed": "#d9eaa3",
+                        "inverse-on-surface": "#f3f1e9",
+                        "on-primary-container": "#253000",
+                        "on-secondary-container": "#795334",
+                        "outline": "#76786b",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#eab6e6",
+                        "surface-variant": "#e4e3db",
+                        "inverse-surface": "#30312c",
+                        "on-primary-fixed-variant": "#3e4c16",
+                        "tertiary-fixed": "#ffd6fa",
+                        "secondary": "#7c5637",
+                        "surface-container": "#f0eee6",
+                        "secondary-fixed": "#ffdcc3",
+                        "background": "#fbf9f1",
+                        "inverse-primary": "#bdce89",
+                        "on-secondary-fixed": "#2f1500",
+                        "outline-variant": "#c6c8b8",
+                        "surface-bright": "#fbf9f1",
+                        "surface-container-high": "#eae8e0",
+                        "on-secondary-fixed-variant": "#623f22",
+                        "on-tertiary-container": "#431e44",
+                        "tertiary": "#7a507a",
+                        "tertiary-container": "#b384b1",
+                        "primary-fixed-dim": "#bdce89",
+                        "on-tertiary-fixed-variant": "#603961",
+                        "primary-container": "#8a9a5b",
+                        "surface": "#fbf9f1",
+                        "on-error": "#ffffff",
+                        "on-background": "#1b1c17"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "xl": "80px",
+                        "container-max": "1200px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "stat-number": ["Plus Jakarta Sans"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "h2": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h3": ["24px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "stat-number": ["28px", { "lineHeight": "1.0", "fontWeight": "700" }],
+                        "h1": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h2": ["32px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex flex-col pb-xl md:pb-0">
+<!-- TopNavBar (Hidden on Mobile) -->
+<nav class="hidden md:flex bg-[#FAFAFA] dark:bg-stone-900 font-['Plus_Jakarta_Sans'] text-sm font-medium docked full-width top-0 border-b border-[#8A9A5B]/10 dark:border-white/10 shadow-sm shadow-[#8A9A5B]/5 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-[1200px] mx-auto">
+<div class="text-2xl font-bold text-[#8A9A5B] dark:text-[#A4B475] tracking-tight">Tournify</div>
+<div class="flex items-center gap-gutter">
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#8A9A5B] duration-200 ease-in-out" href="#">Home</a>
+<a class="text-[#8A9A5B] border-b-2 border-[#8A9A5B] pb-1 duration-200 ease-in-out" href="#">Sports</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#8A9A5B] duration-200 ease-in-out" href="#">Tournaments</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#8A9A5B] duration-200 ease-in-out" href="#">Live</a>
+</div>
+<div class="flex items-center gap-sm">
+<button class="text-[#8A9A5B] dark:text-[#A4B475] duration-200 ease-in-out"><span class="material-symbols-outlined" data-icon="search">search</span></button>
+<button class="bg-primary text-on-primary px-sm py-base rounded-lg hover:bg-on-primary-fixed-variant transition-colors duration-200 ease-in-out">Sign In</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-md py-lg md:py-xl flex flex-col gap-xl">
+<!-- Header Section -->
+<header class="flex flex-col gap-sm items-start">
+<div class="flex items-center gap-sm">
+<h1 class="font-h1 text-h1 text-on-surface">Chess</h1>
+<span class="inline-flex items-center bg-surface-container text-on-surface font-label-caps text-label-caps uppercase rounded-full px-sm py-xs border border-outline-variant">
+                    Round Robin
+                </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                Current standings and upcoming matches for the varsity chess tournament.
+            </p>
+</header>
+<!-- Points Table Section -->
+<section class="flex flex-col gap-sm">
+<h2 class="font-h2 text-h2 text-on-surface mb-xs">Standings</h2>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/50">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-primary">
+<th class="font-label-caps text-label-caps text-on-primary px-md py-sm w-16 text-center">Rank</th>
+<th class="font-label-caps text-label-caps text-on-primary px-md py-sm">Team</th>
+<th class="font-label-caps text-label-caps text-on-primary px-md py-sm text-center w-16">P</th>
+<th class="font-label-caps text-label-caps text-on-primary px-md py-sm text-center w-16">W</th>
+<th class="font-label-caps text-label-caps text-on-primary px-md py-sm text-center w-16">D</th>
+<th class="font-label-caps text-label-caps text-on-primary px-md py-sm text-center w-16">L</th>
+<th class="font-label-caps text-label-caps text-on-primary px-md py-sm text-center w-20">PTS</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="bg-primary-fixed border-b border-primary/20">
+<td class="px-md py-sm text-center font-stat-number text-on-primary-fixed">1</td>
+<td class="px-md py-sm font-semibold text-on-primary-fixed flex items-center gap-sm">
+                                    Team A <span class="material-symbols-outlined text-primary text-sm" data-icon="emoji_events" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+</td>
+<td class="px-md py-sm text-center text-on-primary-fixed">3</td>
+<td class="px-md py-sm text-center text-on-primary-fixed">2</td>
+<td class="px-md py-sm text-center text-on-primary-fixed">1</td>
+<td class="px-md py-sm text-center text-on-primary-fixed">0</td>
+<td class="px-md py-sm text-center font-stat-number text-on-primary-fixed">7</td>
+</tr>
+<tr class="border-b border-primary/20 bg-surface-container-lowest transition-colors hover:bg-surface-container-low">
+<td class="px-md py-sm text-center text-on-surface-variant">2</td>
+<td class="px-md py-sm font-medium">Team C</td>
+<td class="px-md py-sm text-center text-on-surface-variant">3</td>
+<td class="px-md py-sm text-center text-on-surface-variant">1</td>
+<td class="px-md py-sm text-center text-on-surface-variant">2</td>
+<td class="px-md py-sm text-center text-on-surface-variant">0</td>
+<td class="px-md py-sm text-center font-semibold">5</td>
+</tr>
+<tr class="border-b border-primary/20 bg-surface-container-lowest transition-colors hover:bg-surface-container-low">
+<td class="px-md py-sm text-center text-on-surface-variant">3</td>
+<td class="px-md py-sm font-medium">Team B</td>
+<td class="px-md py-sm text-center text-on-surface-variant">3</td>
+<td class="px-md py-sm text-center text-on-surface-variant">1</td>
+<td class="px-md py-sm text-center text-on-surface-variant">0</td>
+<td class="px-md py-sm text-center text-on-surface-variant">2</td>
+<td class="px-md py-sm text-center font-semibold">3</td>
+</tr>
+<tr class="bg-surface-container-lowest transition-colors hover:bg-surface-container-low">
+<td class="px-md py-sm text-center text-on-surface-variant">4</td>
+<td class="px-md py-sm font-medium">Team D</td>
+<td class="px-md py-sm text-center text-on-surface-variant">3</td>
+<td class="px-md py-sm text-center text-on-surface-variant">0</td>
+<td class="px-md py-sm text-center text-on-surface-variant">1</td>
+<td class="px-md py-sm text-center text-on-surface-variant">2</td>
+<td class="px-md py-sm text-center font-semibold">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Secondary Section: Upcoming Matches -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center justify-between border-b border-primary/10 pb-sm">
+<h2 class="font-h2 text-h2 text-on-surface">Upcoming</h2>
+<a class="font-label-caps text-label-caps text-primary hover:text-on-primary-fixed-variant uppercase tracking-wider transition-colors" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Match Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 flex flex-col gap-md relative overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+<div class="absolute top-0 right-0 p-sm opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[80px] text-primary" data-icon="chess">chess</span>
+</div>
+<div class="flex justify-between items-center z-10">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Round 4</span>
+<span class="font-label-caps text-label-caps text-secondary-container bg-secondary-fixed-dim/20 px-xs py-[2px] rounded uppercase">Tomorrow, 10 AM</span>
+</div>
+<div class="flex flex-col gap-base z-10 mt-sm">
+<div class="flex items-center justify-between">
+<span class="font-h3 text-h3 text-on-surface">Team A</span>
+</div>
+<div class="w-full h-px bg-outline-variant/30 my-xs"></div>
+<div class="flex items-center justify-between">
+<span class="font-h3 text-h3 text-on-surface">Team B</span>
+</div>
+</div>
+</div>
+<!-- Match Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 flex flex-col gap-md relative overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+<div class="absolute top-0 right-0 p-sm opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[80px] text-primary" data-icon="chess">chess</span>
+</div>
+<div class="flex justify-between items-center z-10">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Round 4</span>
+<span class="font-label-caps text-label-caps text-secondary-container bg-secondary-fixed-dim/20 px-xs py-[2px] rounded uppercase">Tomorrow, 1 PM</span>
+</div>
+<div class="flex flex-col gap-base z-10 mt-sm">
+<div class="flex items-center justify-between">
+<span class="font-h3 text-h3 text-on-surface">Team C</span>
+</div>
+<div class="w-full h-px bg-outline-variant/30 my-xs"></div>
+<div class="flex items-center justify-between">
+<span class="font-h3 text-h3 text-on-surface">Team D</span>
+</div>
+</div>
+</div>
+<!-- Match Card 3 (Future) -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/30 flex flex-col gap-md relative overflow-hidden opacity-80">
+<div class="absolute top-0 right-0 p-sm opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[80px] text-primary" data-icon="chess">chess</span>
+</div>
+<div class="flex justify-between items-center z-10">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Round 5</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Sat, Oct 14</span>
+</div>
+<div class="flex flex-col gap-base z-10 mt-sm">
+<div class="flex items-center justify-between">
+<span class="font-h3 text-h3 text-on-surface">Team A</span>
+</div>
+<div class="w-full h-px bg-outline-variant/30 my-xs"></div>
+<div class="flex items-center justify-between">
+<span class="font-h3 text-h3 text-on-surface">Team C</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Visible on Mobile Only) -->
+<nav class="md:hidden bg-white/80 dark:bg-stone-900/80 backdrop-blur-md text-[10px] font-medium font-['Plus_Jakarta_Sans'] fixed bottom-0 w-full rounded-t-2xl border-t border-[#8A9A5B]/10 shadow-[0_-4px_20px_rgba(138,154,91,0.08)] z-50">
+<div class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 tap-highlight-transparent">
+<a class="flex flex-col items-center justify-center text-stone-400 active:scale-95" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+                Home
+            </a>
+<a class="flex flex-col items-center justify-center bg-[#FFCBA4]/20 text-[#8A9A5B] rounded-xl px-4 py-1 active:scale-95" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="search" style="font-variation-settings: 'FILL' 1;">search</span>
+                Explore
+            </a>
+<a class="flex flex-col items-center justify-center text-stone-400 active:scale-95" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="live_tv">live_tv</span>
+                Live
+            </a>
+<a class="flex flex-col items-center justify-center text-stone-400 active:scale-95" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+                Profile
+            </a>
+</div>
+</nav>
+</body></html>
