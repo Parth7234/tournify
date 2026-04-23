@@ -1,8 +1,0 @@
-the points table is not visibile niether is the bracket for knockout
-for a knockout style tounament, if a stage knockout is completed thne the other upcoming mathces should be autmactically added 
-for eg if team a,b have a match and team a wind, and teanm c,d have a match and team c wins then there a mathc between team a and c should be added autmatically as well as the kknockout brackets shoudl be updateed acccrodingly abd be viisble to the viewer 
-
-also there should be storgage of hte history of matches once a match is completed visible to both the viewwer and the admin 
-
-also wheen a match is completed in the admin panel it should be as well as to the viewer 
-

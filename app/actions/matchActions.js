@@ -168,8 +168,6 @@ async function advanceKnockout(completedMatch) {
   }
 }
 
-// ============ TOURNAMENT GENERATION ============
-
 export async function generateTournamentMatches(sportId) {
   await dbConnect();
   const sport = await Sport.findById(sportId).lean();
